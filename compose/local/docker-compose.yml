@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  database:
+    image: postgres:latest
+    container_name: pilot_crm
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: pilot_crm  # 데이터베이스 이름
+      POSTGRES_USER: local    # 사용자 이름
+      POSTGRES_PASSWORD: password  # 비밀번호
+    volumes:
+#      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # 초기화 SQL 파일 마운트
+      - postgres_data:/var/lib/postgresql/data  # PostgreSQL 데이터 디렉터리를 호스트 시스템의 볼륨에 마운트합니다.
+    restart: always
+
+volumes:
+  postgres_data:

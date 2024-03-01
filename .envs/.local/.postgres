@@ -1,0 +1,8 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5432
+POSTGRES_DB=pilot_crm
+POSTGRES_USER=local
+POSTGRES_PASSWORD=password
+POSTGRES_CONNECTION_URL=postgres://local:password@localhost:5432/pilot_crm

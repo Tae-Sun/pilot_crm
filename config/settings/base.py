@@ -5,10 +5,17 @@ from pathlib import Path
 
 import environ
 
+from utils.export_dot_envs import export_dot_envs
+
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 # pilot_crm/
 APPS_DIR = BASE_DIR / "pilot_crm"
 env = environ.Env()
+
+export_dot_envs(
+    BASE_DIR / ".envs",
+    env.str('DJANGO_SETTINGS_MODULE')
+)
 
 READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
 if READ_DOT_ENV_FILE:
@@ -45,7 +52,7 @@ LOCALE_PATHS = [str(BASE_DIR / "locale")]
 # DATABASES
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
-DATABASES = {"default": env.db("DATABASE_URL")}
+DATABASES = {"default": env.db("POSTGRES_CONNECTION_URL")}
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 # https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-DEFAULT_AUTO_FIELD
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
@@ -259,7 +266,6 @@ LOGGING = {
     },
     "root": {"level": "INFO", "handlers": ["console"]},
 }
-
 
 # django-allauth
 # ------------------------------------------------------------------------------
