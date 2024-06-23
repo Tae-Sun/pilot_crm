@@ -22,6 +22,7 @@ urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
     path("users/", include("pilot_crm.users.urls", namespace="users")),
+    path("creatives/", include("pilot_crm.creatives.urls", namespace="creatives")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
     # ...
